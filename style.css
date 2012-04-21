@@ -1,0 +1,46 @@
+#bar
+{
+  position: absolute;
+  height: 144px;
+  width: 1280px;
+  bottom: 0;
+  background-color: #efefef;
+}
+
+#scroller-container
+{
+  position: absolute;
+  left: 144px;
+  width: 1136px;
+  height: 144px;
+  overflow: hidden;
+  overflow-y: hidden;
+}
+
+#topic
+{
+  position: absolute;
+  left: 0px;
+  height: 144px;
+  width: 144px;
+  background-color: white;
+  text-align: center;
+}
+
+#scroller
+{
+  height: 144px;
+  width: 10000%;
+}
+
+.badge
+{
+  height: 100px;
+  margin-top: 10px;
+}
+
+.exercise {
+  height: 144px;
+  padding-right: 10px;
+  float: left;
+}
