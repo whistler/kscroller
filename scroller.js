@@ -7,8 +7,20 @@ $(document).ready(function() {
 })
 
 function showBadge(name, data) {
-  $("#topic").html(name+"<br>"); 
-  $("#topic").append('<img class="badge" src="badges/'+ data.badge + '">');
+  name = name.replace(/\-/gi, ' ')
+  // Camble Case
+  name = (" " + name).replace(/ ([a-z])/g, function($1){return $1.toUpperCase().replace('-','');});
+  
+  topic_name = document.createElement("p");
+  topic_name.innerHTML = name;
+  
+  badge = document.createElement("img");
+  badge.src = "badges/" + data.badge;
+  $(badge).addClass("badge");
+    
+  $("#topic")[0].appendChild(badge);  
+  $("#topic")[0].appendChild(topic_name);
+    
   images = ""
   for(i=0;i<data.exercises.length;i++)
   {
@@ -18,8 +30,15 @@ function showBadge(name, data) {
 }
 
 function completeBadge(topic) {
-  $("#topic").html(topic1.name+"<br>"); 
-  $("#topic").append('<img class="badge" src="badges/'+ topic1.badge + '">');
+  topic_name = document.createElement("p");
+  topic_name.innerHTML = topic1.name;
+  
+  badge = document.createElement("img");
+  badge.src = "badges/" + topic1.badge;
+  $(badge).addClass("badge");
+  
+  $("#topic")[0].appendChild(topic_name);
+  $("#topic")[0].appendChild(badge);
 }
 
 function scroll() {
