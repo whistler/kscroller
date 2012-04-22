@@ -4,15 +4,22 @@ $(document).ready(function() {
   var topic = data[topics[0]];
   console.log(topic);
   showBadge(topics[0], topic);
+  scroll();
 })
 
-function showBadge(name, data) {
+function sanitizeTitle(name) {
   name = name.replace(/\-/gi, ' ')
   // Camble Case
-  name = (" " + name).replace(/ ([a-z])/g, function($1){return $1.toUpperCase().replace('-','');});
+  name = (" " + name).replace(/ ([a-z])/g, function($1){return $1.toUpperCase().replace('-','');});  
   
+  return name;
+}
+
+function showBadge(name, data) {
+  
+  $("#topic").html(" ");
   topic_name = document.createElement("p");
-  topic_name.innerHTML = name;
+  topic_name.innerHTML = sanitizeTitle(name);
   
   badge = document.createElement("img");
   badge.src = "badges/" + data.badge;
@@ -21,6 +28,8 @@ function showBadge(name, data) {
   $("#topic")[0].appendChild(badge);  
   $("#topic")[0].appendChild(topic_name);
     
+  $("#scroller").html(" ");
+  
   for(i=0;i<data.exercises.length;i++) {
     img = document.createElement("img");
     img.src = "exercises/" + data.exercises[i];
@@ -30,24 +39,25 @@ function showBadge(name, data) {
   }
 }
 
-function completeBadge(topic) {
+function completeBadge(name, topic) {
+  $("#topic").html(" ");
   topic_name = document.createElement("p");
-  topic_name.innerHTML = topic1.name;
+  topic_name.innerHTML = sanitizeTitle(name);
   
   badge = document.createElement("img");
-  badge.src = "badges/" + topic1.badge_completed;
+  badge.src = "badges/" + topic.badge_completed;
   $(badge).addClass("badge");
   
+  $("#topic")[0].appendChild(badge);  
   $("#topic")[0].appendChild(topic_name);
-  $("#topic")[0].appendChild(badge);
 }
 
 function scroll() {
   var scroller = document.getElementById('scroller-container');
   scroller.scrollLeft = scroller.scrollLeft + 10;
   if (scroller.scrollLeft > getScrollWidth()) nextTopic();
-  if (scroller.scrollLeft > getScrollWidth() - 500) completeBadge(data[topics[topic_index]])
-  setTimeout( function () { scroll(); }, 30);
+  if (scroller.scrollLeft > getScrollWidth() - 500) completeBadge(topics[topic_index], data[topics[topic_index]]);
+  setTimeout( function () { scroll(); }, 1);
 }
 
 function getScrollWidth() {
