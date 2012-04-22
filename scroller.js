@@ -55,7 +55,7 @@ function scroll() {
   scroller.scrollLeft = scroller.scrollLeft + 10;
   if (scroller.scrollLeft > getScrollWidth()) nextTopic();
   if (scroller.scrollLeft > getScrollWidth() - 1000) completeBadge(topics[topic_index], data[topics[topic_index]]);
-  setTimeout( function () { scroll(); }, 11);
+  setTimeout( function () { scroll(); }, 10);
 }
 
 function getScrollWidth() {
@@ -70,9 +70,10 @@ function getScrollWidth() {
 
 function nextTopic() {
   topic_index = topic_index + 1;
-  var topic = data[topics[topic_index]];
-  var scroller = document.getElementById('scroller-container');
-  scroller.scrollLeft = 0;
-  showBadge(topics[topic_index], topic);
-
+  if (topic_index < topics.length){
+    var topic = data[topics[topic_index]];
+    var scroller = document.getElementById('scroller-container');
+    scroller.scrollLeft = 0;
+    showBadge(topics[topic_index], topic);
+  }
 }
