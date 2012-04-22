@@ -40,7 +40,8 @@
 }
 
 .exercise {
-  height: 144px;
-  padding-right: 10px;
+  height: 100%;
+  padding-right: 300px;
   float: left;
+  max-width: 300px;
 }
