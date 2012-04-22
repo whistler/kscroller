@@ -15,9 +15,9 @@ Dir.new("badges").each do |file|
   end
 end
 
-Dir.new("exercises").each do |file|
+Dir.new("exercises2").each do |file|
   if file.to_s[0] != '.'
-    exercise = file.to_s.sub('-full-trimmed.png','')
+    exercise = file.to_s.sub('-full-resized.png','')
     topic = exercise.split('-')[0].gsub('_', '-').downcase
     topics[topic][:exercises] << file.to_s
   end
@@ -29,6 +29,6 @@ File.open("data.js","w") do |f|
   f.write(JSON.pretty_generate(topics))
 end
 
-File.open("keys.js","w") do |f|
+File.open("topics.js","w") do |f|
   f.write(JSON.pretty_generate(keys))
 end

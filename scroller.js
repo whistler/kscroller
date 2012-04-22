@@ -2,7 +2,6 @@ var topic_index = 0;
 
 $(document).ready(function() {
   var topic = data[topics[0]];
-  console.log(topic);
   showBadge(topics[0], topic);
   scroll();
 })
@@ -16,7 +15,7 @@ function sanitizeTitle(name) {
 }
 
 function showBadge(name, data) {
-  
+
   $("#topic").html(" ");
   topic_name = document.createElement("p");
   topic_name.innerHTML = sanitizeTitle(name);
@@ -32,9 +31,8 @@ function showBadge(name, data) {
   
   for(i=0;i<data.exercises.length;i++) {
     img = document.createElement("img");
-    img.src = "exercises/" + data.exercises[i];
+    img.src = "exercises2/" + data.exercises[i];
     $(img).addClass("exercise");
-    
     $("#scroller")[0].appendChild(img);
   }
 }
@@ -56,8 +54,8 @@ function scroll() {
   var scroller = document.getElementById('scroller-container');
   scroller.scrollLeft = scroller.scrollLeft + 10;
   if (scroller.scrollLeft > getScrollWidth()) nextTopic();
-  if (scroller.scrollLeft > getScrollWidth() - 500) completeBadge(topics[topic_index], data[topics[topic_index]]);
-  setTimeout( function () { scroll(); }, 1);
+  if (scroller.scrollLeft > getScrollWidth() - 1000) completeBadge(topics[topic_index], data[topics[topic_index]]);
+  setTimeout( function () { scroll(); }, 11);
 }
 
 function getScrollWidth() {
@@ -73,6 +71,8 @@ function getScrollWidth() {
 function nextTopic() {
   topic_index = topic_index + 1;
   var topic = data[topics[topic_index]];
-  showBadge(topics[topic_index], topic);
+  var scroller = document.getElementById('scroller-container');
   scroller.scrollLeft = 0;
+  showBadge(topics[topic_index], topic);
+
 }
